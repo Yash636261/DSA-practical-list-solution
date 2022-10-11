@@ -5,7 +5,7 @@ void search(int arr[],int n,int s){
     {
         if(arr[i]==s)
         {
-            printf("element found ar index:%d /n",i);
+            printf("element found at index:%d /n",i);
             break;
         }
     }
