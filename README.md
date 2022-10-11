@@ -1,2 +1,2 @@
 # DSA-practical-list-solution
-<h1> solution of the DSA practicals of college list</h1>
+<h1> solution of the DSA practicals of collage list</h1>
