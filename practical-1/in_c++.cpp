@@ -1,63 +1,79 @@
 #include<iostream>
 using namespace std;
-void search(int arr[],int n,int s){
+void search(int arr[],int n){
+    int s;
+    cout<<"enter element you want to find:";
+    cin>>s;
     for(int i=0;i<n;i++)
-    {
-        if(arr[i]==s)
-        {
+        if(arr[i]==s){
             cout<<"element found ar index:"<<i;
-        }
-    }
+            break;}
 }
-void insert(int arr[],int n,int s,int val)
+void insert(int arr[],int n)
 { 
+    int val,s;
+    cout<<"enter the element you want to add and index:";
+    cin>>val>>s;
     for(int i=0;i<n;i++)
-    {
         if(i==s)
         {
             for(int j=n;j>=i;j--)
-            {
                 arr[j+1]=arr[j];
-            }
             arr[i]=val;
-            return;
+            break;
         }
-    }
 }
-void dlt(int arr[],int n,int val)
+void dlt(int arr[],int n)
 { 
+    int dlt;
+    cout<<"enter the element you want to delete from the array:";
+    cin>>dlt;
     for(int i=0;i<n;i++)
     {
-        if(arr[i]==val)
+        if(arr[i]==dlt)
         {
             for(int j=i;j<n;j++)
             {
                 arr[j]=arr[j+1];
             }
-            return;
+            break;
         }
     }
 }
+void get(int arr[],int n)
+{
+    cout<<"enter the elements of an array:";
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+}
+void print(int arr[],int n)
+{
+    for(int i=0;i<n;i++)
+        cout<<arr[i]<<endl;
+}
 int main()
 {
-    int arr[6]={1,2,3,4,5},in,s,delet,v,n;
-    n=sizeof(arr)/sizeof(arr[0]);
-    cout<<"enter index of element you want to find:";
-    cin>>s;
-    //int s=2,v=56,n=5;
-    search(arr,n,s);
-    cout<<endl;
-    cout<<"enter the element you want to add and index:";
-    cin>>v>>in;
-    insert(arr,n,in,v);
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
+    int arr[100],n,operation;
+    cout<<"enter the size of array:";
+    cin>>n;
+    get(arr,n);
+    cout<<"enter the operation you want to do[1,2,3]:\n 1. search\n2. insert \n3. delete\n";
+    cin>>operation;  
+    switch(operation)
+    {
+        case 1:
+            search(arr,n);
+            break;
+        case 2:
+            insert(arr,n);
+            print(arr,n+1);
+            break;
+        case 3:
+            dlt(arr,n);
+            print(arr,n);
+            break;
     }
-    cout<<endl<<"enter the element you want to delete from the array:";
-    cin>>delet;
-    dlt(arr,n,delet);
-    cout<<endl;
-    for(int i=0;i<n-1;i++){
-        cout<<arr[i]<<" ";
-    }
+    return 0;
 }
