@@ -72,7 +72,7 @@ int main()
             break;
         case 3:
             dlt(arr,n);
-            print(arr,n);
+            print(arr,n-1);
             break;
     }
     return 0;
