@@ -1,64 +1,143 @@
 #include<bits/stdc++.h>
-#define max 100
-using namespace std;
-char stack[max];
-char infix[max],postfix[max];
-int top=-1;
-
-void pop()
+#define SIZE 100
+char stack[SIZE];
+int top = -1;
+char infix[SIZE], postfix[SIZE];  
+void push(char item)
 {
-    if(top<=-1)
-    {
-        cout<<"\n\t Stack is under flow";
-    }
-    else
-    {
-        cout<<"\n\t The popped elements is ";
-        top--;
-    }
+	if(top >= SIZE-1)
+	{
+		std::cout<<"\nStack Overflow.";
+	}
+	else
+	{
+		top = top+1;
+		stack[top] = item;
+	}
 }
-
-void push(int x)
+char pop()
 {
-    if(top>=strlen(infix)-1)
-    {
-        cout<<"\n\tSTACK is over flow";
-        
-    }
-    else
-    {
-        top++;
-        stack[top]=x;
-    }
+	char item ;
+
+	if(top <0)
+	{
+		std::cout<<"stack under flow: invalid infix expression";
+		getchar();
+		exit(1);
+	}
+	else
+	{
+		item = stack[top];
+		top = top-1;
+		return(item);
+	}
+}
+int is_operator(char symbol)
+{
+	if(symbol == '^' || symbol == '*' || symbol == '/' || symbol == '+' || symbol =='-')
+	{
+		return 1;
+	}
+	else
+	{
+	return 0;
+	}
+}
+int precedence(char symbol)
+{
+	if(symbol == '^')
+	{
+		return(3);
+	}
+	else if(symbol == '*' || symbol == '/')
+	{
+		return(2);
+	}
+	else if(symbol == '+' || symbol == '-')          
+	{
+		return(1);
+	}
+	else
+	{
+		return(0);
+	}
 }
 
-void intopost(){
-    int j=0;
-    char temp,next;
-    for(int i=0;i<strlen(infix);i++)
-    {
-        switch(temp){
-            case '(':
-                push(temp);
-                break;
-            case ')':
-                while((next=pop()) != '(')
-                    postfix[j++]=next;
-                    break;
-            case '+':
-            case '-':
-            case '*':
-            case '/':
-                while(!isempty() )
-            default:
-                postfix[j++]=temp;
-        }
-    }
-}
+void InfixToPostfix(char infix_exp[], char postfix_exp[])
+{ 
+	int i, j;
+	char item;
+	char x;
+	push('(');                              
+	strcat(infix_exp,")");                
+	i=0;
+	j=0;
+	item=infix_exp[i];        
 
+	while(item != '\0')  
+	{
+		if(item == '(')
+		{
+			push(item);
+		}
+		else if( isdigit(item) || isalpha(item))
+		{
+			postfix_exp[j] = item;             
+			j++;
+		}
+		else if(is_operator(item) == 1)       
+		{
+			x=pop();
+			while(is_operator(x) == 1 && precedence(x)>= precedence(item))
+			{
+				postfix_exp[j] = x;                  
+				j++;
+				x = pop();                      
+			}
+			push(x);
+		
+			push(item);                
+		}
+		else if(item == ')')        
+		{
+			x = pop();                   
+			while(x != '(')               
+			{
+				postfix_exp[j] = x;
+				j++;
+				x = pop();
+			}
+		}
+		else
+		{ 
+			std::cout<<"\nInvalid infix Expression.\n";        
+			getchar();
+			exit(1);
+		}
+		i++;
+		item = infix_exp[i]; 
+	} 
+	if(top>0)
+	{
+		std::cout<<"\nInvalid infix Expression.\n";       
+		getchar();
+		exit(1);
+	}
+	if(top>0)
+	{
+		std::cout<<"\nInvalid infix Expression.\n";    
+		getchar();
+		exit(1);
+	}
+	postfix_exp[j] = '\0';
+}
 int main()
-{
-    cout<<"enter the infix expression:"<<endl;
-    gets(infix);
-    intopost();
+{       
+	std::cout<<"ASSUMPTION: The infix expression contains single letter variables and single digit constants only.\n";
+	std::cout<<"\nEnter Infix expression : ";
+	gets(infix);
+	InfixToPostfix(infix,postfix);            
+	std::cout<<"Postfix Expression: ";
+	puts(postfix);                 
+	return 0;
 }
