@@ -26,11 +26,11 @@ void peep(){
 }
 void change()
 {
-    cout<<"enter the position for which you want to change:"<<endl;
+    cout<<"enter the position for which you want to change:"<<top<<endl;
     cin>>pos;
     cout<<"enter the new value:"<<endl;
     cin>>val;
-    if(top=-1){
+    if(top==-1){
         cout<<"stack is underflow.";
     }
     else{
@@ -102,6 +102,6 @@ int main()
                 
         }
     }
-    while(choice!=4);
+    while(choice!=6);
     return 0;
 }
