@@ -2,21 +2,25 @@
 using namespace std;
 int queue[100],n,head=-1,tail=-1,option,x;
 void enqueue(){
-	cout<<"enter the elemet you want to insert:"<<endl;
-	cin>>x;
 	if(tail==n-1){
 		cout<<"queue is full"<<endl;
 	}
 	else{
+		if(head==-1){
+			head=0;
+		}
+		cout<<"enter the elemet you want to insert:"<<endl;
+		cin>>x;
 		tail++;
 		queue[tail]=x;
 	}
 }
 void dequeue(){
-	if(tail==-1){ 
+	if(head==-1||head>tail){ 
 		cout<<"queue is empty"<<endl;
 	}
 	else{
+		cout<<"elemet deleted:"<<queue[head]<<endl;
 		head++;
 	}
 }
