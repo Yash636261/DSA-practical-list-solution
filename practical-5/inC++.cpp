@@ -40,9 +40,9 @@ void display()
 int main(){
 	cout<<"enter the size of the queue:"<<endl;
 	cin>>n;
+	cout<<"what operation you want to do[1-4]:\n 1.insert \n 2.delete \n 3.display \n 4.exit"<<endl;
+	cin>>option;
 	do{
-		cout<<"what operation you want to do[1-4]:\n 1.insert \n 2.delete \n 3.display \n 4.exit"<<endl;
-		cin>>option;
 		switch(option)
 		{
 		case 1:
