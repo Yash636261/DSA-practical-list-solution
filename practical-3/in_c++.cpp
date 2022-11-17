@@ -19,6 +19,7 @@ void pop(){
   if( top<0 )
     cout<<"your stack is underflaw.";
   else
+    cout<<"element poped";
     top--;
 }
 void peep(){
@@ -56,7 +57,6 @@ int main()
     cout<<"\n Enter the size of STACK[MAX=100]:";
     cin>>n;
     cout<<"\n\t STACK OPERATIONS USING ARRAY";
-    cout<<"\n\t--------------------------------";
     cout<<"\n\t 1.PUSH\n\t 2.POP\n\t 3.PEEP\n\t 4.CHANGE\n\t 5.DISPLAY\n\t 6.EXIT";
     do
     {
