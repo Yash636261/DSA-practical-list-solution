@@ -6,7 +6,7 @@ void value(int a,int b)
     t=a;
     a=b;
     b=t;
-    cout<<"after swapping a="<<a<<" b="<<b;
+    cout<<"after swapping using call by value a="<<a<<" b="<<b;
 }
 void refrence(int *a,int *b)
 {
@@ -14,7 +14,7 @@ void refrence(int *a,int *b)
     t=*a;
     *a=*b;
     *b=t;
-    cout<<"after swapping a="<<*a<<"  b="<<*b;
+    cout<<"after swapping using call by refrence a="<<*a<<"  b="<<*b;
 }
 int main()
 {
