@@ -29,22 +29,23 @@ void insertAtTail(Node* &head,int data){
     curr->next=temp;
     curr=temp;
 }
-void sortedInsert(Node* &head_ref,int data)
+void Insertatpos(Node* &head,int pos,int data)
 {
-    Node* current;
-    Node* new_node=new Node(data);
-    if (head_ref == NULL|| (head_ref)->data>= new_node->data) {
-        new_node->next = head_ref;
-        head_ref = new_node;
+    
+    Node* temp=new Node(data);
+    if(pos==1){
+        temp->next=head;
+        return;
     }
-    else {
-        current = head_ref;
-        while (current->next != NULL&& current->next->data< new_node->data) {
-            current = current->next;
-        }
-        new_node->next = current->next;
-        current->next = new_node;
+    Node* curr=head;
+    for(int i=1;i<=pos-2&&curr!=NULL;i++){
+        curr=curr->next;
     }
+    if(curr==NULL){
+        return;
+    }
+    temp->next=curr->next;
+    curr->next=temp;
 }
 void deleteHead(Node* &head){
     Node* temp=head;
@@ -104,7 +105,7 @@ int main()
     Node* temp2= temp1->next = new Node(30);
     Node* temp3= temp2->next = new Node(40);
     int opt;
-    cout<<"chose the operation you want to do in existing linked list[10->20->30->40]:\n1.Insert a node at the front of the linked list.\n2. Insert a node at the end of the linked list. \n3. Insert a node such that linked list is in ascending order\n4. Delete a first node of the linked list. \n5. Delete a node before specified position. \n6. Delete a node after specified position.\n7. print\n8. exit"<<endl;
+    cout<<"chose the operation you want to do in existing linked list[10->20->30->40]:\n1.Insert a node at the front of the linked list.\n2. Insert a node at the end of the linked list. \n3. Insert a node at position\n4. Delete a first node of the linked list. \n5. Delete a node before specified position. \n6. Delete a node after specified position.\n7. print\n8. exit"<<endl;
     do{
         cout<<"enter the opration"<<endl;
         cin>>opt;
@@ -116,7 +117,7 @@ int main()
                 insertAtTail(head,50);
                 break;
             case 3:
-                sortedInsert(head,45);
+                Insertatpos(head,3,45);
                 break;
             case 4:
                 deleteHead(head);
