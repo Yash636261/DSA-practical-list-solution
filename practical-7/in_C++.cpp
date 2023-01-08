@@ -11,14 +11,20 @@ class Node{
         next=NULL;
     }
 };
-void insertBeg(Node* &head,int data){
+void insertBeg(Node* &head){
+    int data;
+    cout<<"enter data"<<endl;
+    cin>>data;
     Node* temp=new Node(data);
     temp->next=head;
     if(head!=NULL)
         head->prev=temp;
     head=temp;
 }
-void insertAtTail(Node* &head,int data){
+void insertAtTail(Node* &head){
+    int data;
+    cout<<"enter data"<<endl;
+    cin>>data;
     Node* temp=new Node(data);
     Node *curr=head;
     while(curr->next!=NULL){
@@ -33,7 +39,10 @@ void deleteHead(Node* &head){
     head=head->next;
     head->prev=NULL;
 }
-void deleteprev(Node* &head,int pos){
+void deleteprev(Node* &head){
+    int pos;
+    cout<<"enter the pos at you want to insert"<<endl;
+    cin>>pos;
     if(pos==1){
         deleteHead(head);
     }
@@ -76,16 +85,16 @@ int main()
         cin>>opt;
         switch(opt){
             case 1:
-                insertBeg(head,2);
+                insertBeg(head);
                 break;
             case 2:
-                insertAtTail(head,50);
+                insertAtTail(head);
                 break;
             case 3:
                 deleteHead(head);
                 break;
             case 4:
-                deleteprev(head,3);
+                deleteprev(head);
                 break;
             case 5:
                 print(head);
